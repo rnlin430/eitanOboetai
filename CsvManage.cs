@@ -1,7 +1,8 @@
 using System;
 using System.IO;
 using System.Text;
-
+using CsvHelper;
+using CsvHelper.Configuration;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -9,25 +10,25 @@ namespace eitanOboetai
 {
     
     /// <summary>
-    /// 格納用クラス
+    /// 単語を格納するクラス
     /// </summary>
-    public class Account
+    public class Vocabulary
     {
-        public string Vocabulary { get; set; }
-        public string Meaning { get; set; }
-        public string Pos { get; set; }
+        public string vocabulary { get; set; }
+        public string meaning { get; set; }
+        public string pos { get; set; }
     }
 
     /// <summary>
-    /// マッピング用クラス
+    /// マッピングルールを定義するクラス
     /// </summary>
-    class VocabularyMaMapper : CsvHelper.Configuration.ClassMap<Account>
-    { 
-        public VocabularyMaMapper()
+    public class VocabularyTable : ClassMap<Vocabulary>
+    {
+        private VocabularyTable()
         {
-            Map(x => x.Vocabulary).Index(0);
-            Map(x => x.Meaning).Index(1);
-            Map(x => x.Pos).Index(2);       
+            Map( c => c.vocabulary ).Index( 0 );
+            Map( c => c.meaning ).Index( 1 );
+            Map( c => c.pos ).Index( 2 );
         }
     }
-}
+}   

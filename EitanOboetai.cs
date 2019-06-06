@@ -1,13 +1,32 @@
 ﻿using System;
+using System.IO;
+using System.Text;
+using CsvHelper;
+using System.Collections.Generic;
 
 namespace eitanOboetai
 {
-    class EitanOboetai
+    public class EitanOboetai
     {
-        private readonly String NAME = "ABCDEFGH";
-        public String Name{get{return this.NAME;}}
-        public EitanOboetai(){
-            // constructor
-        }     
+        public static IEnumerable<Vocabulary> GetVocabularyList()
+        {
+            var path = @"tango.csv";
+            using ( var csv = new CsvReader( new StreamReader( path ) ) )
+            {
+                var config = csv.Configuration;
+                config.HasHeaderRecord = true;
+                config.RegisterClassMap<VocabularyTable>();
+                IEnumerable<Vocabulary> list = csv.GetRecords<Vocabulary>();
+                return list;
+            }
+        }
+
+        public static void DisplayVocabularyList()
+        {
+            IEnumerable<Vocabulary> gvl = GetVocabularyList();
+            foreach( var n in gvl ){
+                Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
+            }
+        }
     }
 }
