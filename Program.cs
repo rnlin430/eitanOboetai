@@ -6,20 +6,23 @@ using System.Collections.Generic;
 
 namespace eitanOboetai
 {
+    /// <summary>
+    /// メインクラス
+    /// </summary>
     class CsvManagement
     {
-        public CsvManagement()
-        {
-        }
+        public CsvManagement(){}
         /// <summary>
         /// エントリポイント
+        /// <param name="args">与えられた引数</param>
         /// </summary>
         static void Main(string[] args)
         {
             Console.WriteLine("test");
             EitanOboetai eo = new EitanOboetai();
             Console.WriteLine(eo.Name);
-            
+
+            // csv書き込み処理
             using(var streamWriter = new StreamWriter("people.csv"))
             using (var csv = new CsvHelper.CsvWriter(streamWriter))
             {
@@ -27,6 +30,7 @@ namespace eitanOboetai
                 csv.WriteRecord(new { a = 2, b = "b2" });
             }
             
+            // csv読み込み処理
             using (var sr = new StreamReader("tango.csv", UnicodeEncoding.Unicode))
             {
                 using (var csv = new CsvHelper.CsvReader(sr))
@@ -45,6 +49,5 @@ namespace eitanOboetai
                 }
             }
         }
-
     }
 }
