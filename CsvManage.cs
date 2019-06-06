@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using System.Text;
 
+using System.Linq;
+using System.Collections.Generic;
+
 namespace eitanOboetai
 {
     
@@ -10,25 +13,21 @@ namespace eitanOboetai
     /// </summary>
     public class Account
     {
-        public string Name { get; set; }
-        public string Telephone1 { get; set; }
-        public string Address1_city { get; set; }
-        public string Primarycontactid { get; set; }
-        public string Numberofemloyees { get; set; }
+        public string Vocabulary { get; set; }
+        public string Meaning { get; set; }
+        public string Pos { get; set; }
     }
 
     /// <summary>
     /// マッピング用クラス
     /// </summary>
-    class AccountMapper : CsvHelper.Configuration.ClassMap<Account>
+    class VocabularyMaMapper : CsvHelper.Configuration.ClassMap<Account>
     { 
-        public AccountMapper()
+        public VocabularyMaMapper()
         {
-            Map(x => x.Name).Index(0);
-            Map(x => x.Telephone1).Index(1);
-            Map(x => x.Address1_city).Index(2);
-            Map(x => x.Primarycontactid).Index(3);
-            Map(x => x.Numberofemloyees).Index(4);
+            Map(x => x.Vocabulary).Index(0);
+            Map(x => x.Meaning).Index(1);
+            Map(x => x.Pos).Index(2);       
         }
     }
 }

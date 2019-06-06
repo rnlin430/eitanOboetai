@@ -4,13 +4,10 @@ namespace eitanOboetai
 {
     class EitanOboetai
     {
-        private readonly String NAME = "私はりんです。";
+        private readonly String NAME = "ABCDEFGH";
+        public String Name{get{return this.NAME;}}
         public EitanOboetai(){
             // constructor
-        }
-        public String Name{get{return this.NAME;}}
+        }     
     }
-
-    
-
 }
