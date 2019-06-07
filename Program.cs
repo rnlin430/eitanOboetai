@@ -13,7 +13,8 @@ namespace eitanOboetai
         /// </summary>
         private static void Main(string[] args)
         {
-            EitanOboetai.GetVocabularyList();        
+            EitanOboetai.DisplayVocabularyList();
+            // EitanOboetai.GetVocabularyList();        
         }
     }
 }

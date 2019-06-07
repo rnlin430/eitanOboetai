@@ -8,7 +8,8 @@ namespace eitanOboetai
 {
     public class EitanOboetai
     {
-        public static void GetVocabularyList()
+        static List<Vocabulary> vocabularyList = new List<Vocabulary>();
+        public static List<Vocabulary> GetVocabularyList()
         {
             var path = @"tango.csv";
             using ( var csv = new CsvReader( new StreamReader( path ) ) )
@@ -17,20 +18,23 @@ namespace eitanOboetai
                 config.HasHeaderRecord = true;
                 config.RegisterClassMap<VocabularyTable>();
                 IEnumerable<Vocabulary> list = csv.GetRecords<Vocabulary>();
-                            foreach( var n in list ){
-                Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
-            }
+                foreach( var n in list )
+                {
+                    // Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
+                    vocabularyList.Add(n);
+                }
+                return vocabularyList;
             }
         }
 
         public static void DisplayVocabularyList()
         {
-            /*/
-            IEnumerable<Vocabulary> gvl = GetVocabularyList();
-            foreach( var n in gvl ){
+            
+            IEnumerable<Vocabulary> list = GetVocabularyList();
+            foreach( var n in list ){
                 Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
             }
-            */
+            
         }
     }
 }
