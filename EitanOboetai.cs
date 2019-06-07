@@ -8,7 +8,10 @@ namespace eitanOboetai
 {
     public class EitanOboetai
     {
+        readonly private static String ERROR_MESSAGE = 
+            "単語リストの初期化に失敗しました。\r\ncsvファイルに誤りが無いか確認してください。";
         static List<Vocabulary> vocabularyList = new List<Vocabulary>();
+
         public static List<Vocabulary> GetVocabularyList()
         {
             var path = @"tango.csv";
@@ -18,10 +21,15 @@ namespace eitanOboetai
                 config.HasHeaderRecord = true;
                 config.RegisterClassMap<VocabularyTable>();
                 IEnumerable<Vocabulary> list = csv.GetRecords<Vocabulary>();
-                foreach( var n in list )
-                {
-                    // Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
-                    vocabularyList.Add(n);
+                try{
+                    foreach( var n in list )
+                    {
+                        vocabularyList.Add(n);
+                        return vocabularyList;
+                    }
+                }catch(Exception e){
+                    Console.WriteLine(e);
+                    Console.WriteLine(ERROR_MESSAGE);
                 }
                 return vocabularyList;
             }
@@ -30,7 +38,7 @@ namespace eitanOboetai
         public static void DisplayVocabularyList()
         {
             
-            IEnumerable<Vocabulary> list = GetVocabularyList();
+            List<Vocabulary> list = GetVocabularyList();
             foreach( var n in list ){
                 Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
             }
