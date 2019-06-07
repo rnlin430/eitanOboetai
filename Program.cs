@@ -9,13 +9,11 @@ namespace eitanOboetai
     {
         /// <summary>
         /// エントリポイント
-+       /// <param name="args">与えられた引数</param>
+        /// <param name="args">与えられた引数</param>
         /// </summary>
         private static void Main(string[] args)
         {
-            EitanOboetai.GetCsv();
-
-            
+            EitanOboetai.GetVocabularyList();        
         }
     }
 }
