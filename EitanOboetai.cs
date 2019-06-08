@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using CsvHelper;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace eitanOboetai
@@ -25,20 +26,21 @@ namespace eitanOboetai
                     foreach( var n in list )
                     {
                         vocabularyList.Add(n);
-                        return vocabularyList;
                     }
+                    return vocabularyList;
                 }catch(Exception e){
                     Console.WriteLine(e);
                     Console.WriteLine(ERROR_MESSAGE);
-                }
-                return vocabularyList;
+                    Console.ReadKey();
+                    return vocabularyList;
+                }          
             }
         }
 
         public static void DisplayVocabularyList()
         {
-            
             List<Vocabulary> list = GetVocabularyList();
+            Console.WriteLine(list.Count());
             foreach( var n in list ){
                 Console.WriteLine( $"{n.vocabulary}, {n.meaning}, {n.pos}" );
             }
