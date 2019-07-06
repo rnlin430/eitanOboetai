@@ -22,7 +22,7 @@ namespace eitanOboetai
     /// <summary>
     /// マッピングルールを定義するクラス
     /// </summary>
-    public class VocabularyTable : ClassMap<Vocabulary>
+    public class VocabularyTable : ClassMap <Vocabulary>
     {
         private VocabularyTable()
         {
